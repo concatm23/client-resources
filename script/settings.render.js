@@ -1,5 +1,153 @@
-/* Webpack & Concatenate browser pack tool
- * Source Path:resource-app\script\settings.render.js
- * Target: node */
-/*! For license information please see p0aw00hkfm.js.LICENSE.txt */
-!function(t,e){if("object"==typeof exports&&"object"==typeof module)module.exports=e();else if("function"==typeof define&&define.amd)define([],e);else{var n=e();for(var r in n)("object"==typeof exports?exports:t)[r]=n[r]}}(global,(function(){return t={813:function(t){function e(t){return e="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(t){return typeof t}:function(t){return t&&"function"==typeof Symbol&&t.constructor===Symbol&&t!==Symbol.prototype?"symbol":typeof t},e(t)}function n(){"use strict";n=function(){return t};var t={},r=Object.prototype,o=r.hasOwnProperty,i="function"==typeof Symbol?Symbol:{},a=i.iterator||"@@iterator",c=i.asyncIterator||"@@asyncIterator",u=i.toStringTag||"@@toStringTag";function s(t,e,n){return Object.defineProperty(t,e,{value:n,enumerable:!0,configurable:!0,writable:!0}),t[e]}try{s({},"")}catch(t){s=function(t,e,n){return t[e]=n}}function l(t,e,n,r){var o=e&&e.prototype instanceof p?e:p,i=Object.create(o.prototype),a=new S(r||[]);return i._invoke=function(t,e,n){var r="suspendedStart";return function(o,i){if("executing"===r)throw new Error("Generator is already running");if("completed"===r){if("throw"===o)throw i;return{value:void 0,done:!0}}for(n.method=o,n.arg=i;;){var a=n.delegate;if(a){var c=E(a,n);if(c){if(c===d)continue;return c}}if("next"===n.method)n.sent=n._sent=n.arg;else if("throw"===n.method){if("suspendedStart"===r)throw r="completed",n.arg;n.dispatchException(n.arg)}else"return"===n.method&&n.abrupt("return",n.arg);r="executing";var u=f(t,e,n);if("normal"===u.type){if(r=n.done?"completed":"suspendedYield",u.arg===d)continue;return{value:u.arg,done:n.done}}"throw"===u.type&&(r="completed",n.method="throw",n.arg=u.arg)}}}(t,n,a),i}function f(t,e,n){try{return{type:"normal",arg:t.call(e,n)}}catch(t){return{type:"throw",arg:t}}}t.wrap=l;var d={};function p(){}function h(){}function y(){}var v={};s(v,a,(function(){return this}));var g=Object.getPrototypeOf,m=g&&g(g(_([])));m&&m!==r&&o.call(m,a)&&(v=m);var w=y.prototype=p.prototype=Object.create(v);function b(t){["next","throw","return"].forEach((function(e){s(t,e,(function(t){return this._invoke(e,t)}))}))}function x(t,n){function r(i,a,c,u){var s=f(t[i],t,a);if("throw"!==s.type){var l=s.arg,d=l.value;return d&&"object"==e(d)&&o.call(d,"__await")?n.resolve(d.__await).then((function(t){r("next",t,c,u)}),(function(t){r("throw",t,c,u)})):n.resolve(d).then((function(t){l.value=t,c(l)}),(function(t){return r("throw",t,c,u)}))}u(s.arg)}var i;this._invoke=function(t,e){function o(){return new n((function(n,o){r(t,e,n,o)}))}return i=i?i.then(o,o):o()}}function E(t,e){var n=t.iterator[e.method];if(void 0===n){if(e.delegate=null,"throw"===e.method){if(t.iterator.return&&(e.method="return",e.arg=void 0,E(t,e),"throw"===e.method))return d;e.method="throw",e.arg=new TypeError("The iterator does not provide a 'throw' method")}return d}var r=f(n,t.iterator,e.arg);if("throw"===r.type)return e.method="throw",e.arg=r.arg,e.delegate=null,d;var o=r.arg;return o?o.done?(e[t.resultName]=o.value,e.next=t.nextLoc,"return"!==e.method&&(e.method="next",e.arg=void 0),e.delegate=null,d):o:(e.method="throw",e.arg=new TypeError("iterator result is not an object"),e.delegate=null,d)}function L(t){var e={tryLoc:t[0]};1 in t&&(e.catchLoc=t[1]),2 in t&&(e.finallyLoc=t[2],e.afterLoc=t[3]),this.tryEntries.push(e)}function k(t){var e=t.completion||{};e.type="normal",delete e.arg,t.completion=e}function S(t){this.tryEntries=[{tryLoc:"root"}],t.forEach(L,this),this.reset(!0)}function _(t){if(t){var e=t[a];if(e)return e.call(t);if("function"==typeof t.next)return t;if(!isNaN(t.length)){var n=-1,r=function e(){for(;++n<t.length;)if(o.call(t,n))return e.value=t[n],e.done=!1,e;return e.value=void 0,e.done=!0,e};return r.next=r}}return{next:A}}function A(){return{value:void 0,done:!0}}return h.prototype=y,s(w,"constructor",y),s(y,"constructor",h),h.displayName=s(y,u,"GeneratorFunction"),t.isGeneratorFunction=function(t){var e="function"==typeof t&&t.constructor;return!!e&&(e===h||"GeneratorFunction"===(e.displayName||e.name))},t.mark=function(t){return Object.setPrototypeOf?Object.setPrototypeOf(t,y):(t.__proto__=y,s(t,u,"GeneratorFunction")),t.prototype=Object.create(w),t},t.awrap=function(t){return{__await:t}},b(x.prototype),s(x.prototype,c,(function(){return this})),t.AsyncIterator=x,t.async=function(e,n,r,o,i){void 0===i&&(i=Promise);var a=new x(l(e,n,r,o),i);return t.isGeneratorFunction(n)?a:a.next().then((function(t){return t.done?t.value:a.next()}))},b(w),s(w,u,"Generator"),s(w,a,(function(){return this})),s(w,"toString",(function(){return"[object Generator]"})),t.keys=function(t){var e=[];for(var n in t)e.push(n);return e.reverse(),function n(){for(;e.length;){var r=e.pop();if(r in t)return n.value=r,n.done=!1,n}return n.done=!0,n}},t.values=_,S.prototype={constructor:S,reset:function(t){if(this.prev=0,this.next=0,this.sent=this._sent=void 0,this.done=!1,this.delegate=null,this.method="next",this.arg=void 0,this.tryEntries.forEach(k),!t)for(var e in this)"t"===e.charAt(0)&&o.call(this,e)&&!isNaN(+e.slice(1))&&(this[e]=void 0)},stop:function(){this.done=!0;var t=this.tryEntries[0].completion;if("throw"===t.type)throw t.arg;return this.rval},dispatchException:function(t){if(this.done)throw t;var e=this;function n(n,r){return a.type="throw",a.arg=t,e.next=n,r&&(e.method="next",e.arg=void 0),!!r}for(var r=this.tryEntries.length-1;r>=0;--r){var i=this.tryEntries[r],a=i.completion;if("root"===i.tryLoc)return n("end");if(i.tryLoc<=this.prev){var c=o.call(i,"catchLoc"),u=o.call(i,"finallyLoc");if(c&&u){if(this.prev<i.catchLoc)return n(i.catchLoc,!0);if(this.prev<i.finallyLoc)return n(i.finallyLoc)}else if(c){if(this.prev<i.catchLoc)return n(i.catchLoc,!0)}else{if(!u)throw new Error("try statement without catch or finally");if(this.prev<i.finallyLoc)return n(i.finallyLoc)}}}},abrupt:function(t,e){for(var n=this.tryEntries.length-1;n>=0;--n){var r=this.tryEntries[n];if(r.tryLoc<=this.prev&&o.call(r,"finallyLoc")&&this.prev<r.finallyLoc){var i=r;break}}i&&("break"===t||"continue"===t)&&i.tryLoc<=e&&e<=i.finallyLoc&&(i=null);var a=i?i.completion:{};return a.type=t,a.arg=e,i?(this.method="next",this.next=i.finallyLoc,d):this.complete(a)},complete:function(t,e){if("throw"===t.type)throw t.arg;return"break"===t.type||"continue"===t.type?this.next=t.arg:"return"===t.type?(this.rval=this.arg=t.arg,this.method="return",this.next="end"):"normal"===t.type&&e&&(this.next=e),d},finish:function(t){for(var e=this.tryEntries.length-1;e>=0;--e){var n=this.tryEntries[e];if(n.finallyLoc===t)return this.complete(n.completion,n.afterLoc),k(n),d}},catch:function(t){for(var e=this.tryEntries.length-1;e>=0;--e){var n=this.tryEntries[e];if(n.tryLoc===t){var r=n.completion;if("throw"===r.type){var o=r.arg;k(n)}return o}}throw new Error("illegal catch attempt")},delegateYield:function(t,e,n){return this.delegate={iterator:_(t),resultName:e,nextLoc:n},"next"===this.method&&(this.arg=void 0),d}},t}function r(t,e,n,r,o,i,a){try{var c=t[i](a),u=c.value}catch(t){return void n(t)}c.done?e(u):Promise.resolve(u).then(r,o)}function o(t){return function(){var e=this,n=arguments;return new Promise((function(o,i){var a=t.apply(e,n);function c(t){r(a,o,i,c,u,"next",t)}function u(t){r(a,o,i,c,u,"throw",t)}c(void 0)}))}}var i,a=function(){var t=o(n().mark((function t(e){var r,o;return n().wrap((function(t){for(;;)switch(t.prev=t.next){case 0:console.log(e),r=new sdk.common.logger("render menu"),e.display=e.display||[],o=0;case 4:if(!(o<e.display.length)){t.next=24;break}if(e.display[o].index=o,e.display[o].options=e.display[o].options||{},e.display[o].inline_styles=e.display[o].inline_styles||{},!(e.display[o].content instanceof Function)){t.next=12;break}return t.next=11,e.display[o].content();case 11:e.display[o].content=t.sent;case 12:if(e.display[o].content=translation.translate(e.display[o].content||""),!(e.display[o].value instanceof Function)){t.next=17;break}return t.next=16,e.display[o].value();case 16:e.display[o].value=t.sent;case 17:if(!(e.display[o].src instanceof Function)){t.next=21;break}return t.next=20,e.display[o].src();case 20:e.display[o].src=t.sent;case 21:++o,t.next=4;break;case 24:for(key in e)e[key]["pointer-to-parent"]=e;r.info(e),window.settings_vue&&(document.querySelector(".settings").innerHTML=window.settings_raw_html),window.settings_raw_html=document.querySelector(".settings").innerHTML,window.settings_vue=new Vue({el:".settings",data:{data:{display:e}},methods:{}}),translation.translatePage(),document.querySelectorAll(".settings-select").forEach((function(t){var n=~~t.parentNode.getAttribute("data-index");t.addEventListener("change",(function(r){e.display[n].bind&&e.display[n].bind(t.value,e.display[n],n,t)})),t.value=e.display[n].value||""})),document.querySelectorAll(".settings-checkbox").forEach((function(t){var n=~~t.parentNode.getAttribute("data-index");t.addEventListener("change",(function(r){e.display[n].bind&&e.display[n].bind(t.value,e.display[n],n,t)})),t.value=e.display[n].value||""})),document.querySelectorAll(".upload-image-button").forEach((function(t){var n=~~t.getAttribute("data-index");t.addEventListener("change",(function(r){e.display[n].bind&&e.display[n].bind(t.files,e.display[n],n,t)}))})),document.querySelectorAll(".settings-text-box").forEach((function(t){var n=~~t.getAttribute("data-index");t.value=e.display[n].value||""})),document.querySelectorAll(".settings-content").forEach((function(t){var n=~~t.parentNode.getAttribute("data-index");"button"===e.display[n].type&&(t.addEventListener("click",(function(r){e.display[n].enter?a(e[e.display[n].enter]):e.display[n].bind&&e.display[n].bind(t.value)})),t.style.cursor="pointer")})),document.querySelectorAll(".settings-image").forEach((function(t){t.addEventListener("click",(function(n){var r=~~t.parentNode.getAttribute("data-index"),o=document.createElement("a");o.href=t.src,o.download=e.display[r].content,o.click()}))})),document.querySelector("#back-button")&&document.querySelector("#back-button").addEventListener("click",(function(){a(e["pointer-to-parent"])})),console.log(e);case 41:case"end":return t.stop()}}),t)})));return function(e){return t.apply(this,arguments)}}();t.exports={renderTitle:function(){return new Vue({el:".title",data:{app:{name:translation.translate("@{app.name}")}}})},renderSwitchButton:function(){translation.translateElement(".switch-button");for(var t=document.querySelectorAll(".switch-button-icon"),e=(window.innerWidth-52*t.length)/(t.length-1),n=0,r=t.length;n<r;++n)t[n].style.left=~~(n*(e+48))+"px",t[n].style.bottom="0px"},renderContent:(i=o(n().mark((function t(e){return n().wrap((function(t){for(;;)switch(t.prev=t.next){case 0:this.renderMenu(e);case 1:case"end":return t.stop()}}),t,this)}))),function(t){return i.apply(this,arguments)}),renderMenu:a}}},e={},function n(r){var o=e[r];if(void 0!==o)return o.exports;var i=e[r]={exports:{}};return t[r](i,i.exports,n),i.exports}(813);var t,e}));
+/**
+ * @Author          : lihugang
+ * @Date            : 2022-07-23 20:15:08
+ * @LastEditTime    : 2022-08-18 20:44:57
+ * @LastEditors     : lihugang
+ * @Description     : 
+ * @FilePath        : c:\Users\heche\AppData\Roaming\concatenate.pz6w7nkeote\resources\script\settings.render.js
+ * @Copyright (c) lihugang
+ * @长风破浪会有时 直挂云帆济沧海
+ * @There will be times when the wind and waves break, and the sails will be hung straight to the sea.
+ * @ * * * 
+ * @是非成败转头空 青山依旧在 几度夕阳红
+ * @Whether it's right or wrong, success or failure, it's all empty now, and it's all gone with the passage of time. The green hills of the year still exist, and the sun still rises and sets.
+ */
+const renderMenu = async function (arr) {
+    console.log(arr);
+    const logger = new sdk.common.logger('render menu');
+
+    arr.display = arr.display || [];
+    for (var i = 0; i < arr.display.length; ++i) {
+
+        arr.display[i].index = i;
+        arr.display[i].options = arr.display[i].options || {};
+        arr.display[i].inline_styles = arr.display[i].inline_styles || {};
+
+                //calc values
+        if (arr.display[i].content instanceof Function) arr.display[i].content = await arr.display[i].content();
+        arr.display[i].content = translation.translate(arr.display[i].content || '');
+        if (arr.display[i].value instanceof Function) arr.display[i].value = await arr.display[i].value();
+        if (arr.display[i].src instanceof Function) arr.display[i].src = await arr.display[i].src();
+    };
+
+    for (key in arr) {
+        const value = arr[key];
+        value['pointer-to-parent'] = arr;
+    };
+
+    logger.info(arr);
+    if (window.settings_vue) {
+        //exists
+        //reset
+        document.querySelector('.settings').innerHTML = window.settings_raw_html;
+    };
+    window.settings_raw_html = document.querySelector('.settings').innerHTML;
+    //save template and can reset it
+
+    window.settings_vue = new Vue({
+        el: '.settings',
+        data: {
+            data: {
+                display: arr
+            },
+        },
+        methods: {
+        }
+    });
+    translation.translatePage();
+
+    //because of some bug, vue cannot bind click events
+    //use native codes
+
+    document.querySelectorAll('.settings-select').forEach((element) => {
+        var index = ~~element.parentNode.getAttribute('data-index');
+        element.addEventListener('change', (event) => {
+            if (arr.display[index].bind) arr.display[index].bind(element.value, arr.display[index], index, element);
+        });
+        element.value = arr.display[index].value || '';
+    });
+
+    document.querySelectorAll('.settings-checkbox').forEach((element) => {
+        var index = ~~element.parentNode.getAttribute('data-index');
+        element.addEventListener('change', (event) => {
+            if (arr.display[index].bind) arr.display[index].bind(element.value, arr.display[index], index, element);
+        });
+        element.value = arr.display[index].value || '';
+    });
+
+    document.querySelectorAll('.upload-image-button').forEach((element) => {
+        var index = ~~element.getAttribute('data-index');
+        element.addEventListener('change', (event) => {
+            if (arr.display[index].bind) arr.display[index].bind(element.files, arr.display[index], index, element);
+        });
+    });
+
+    document.querySelectorAll('.settings-text-box').forEach((element) => {
+        var index = ~~element.getAttribute('data-index');
+        element.value = arr.display[index].value || '';
+    });
+
+    document.querySelectorAll('.settings-content').forEach((element) => {
+        var index = ~~element.parentNode.getAttribute('data-index');
+        if (arr.display[index].type === 'button') {
+            element.addEventListener('click', (event) => {
+                if (arr.display[index].enter) {
+                    //enter sub menu
+                    renderMenu(arr[arr.display[index].enter]);
+                } else
+                    if (arr.display[index].bind) arr.display[index].bind(element.value);
+            });
+            element.style.cursor = 'pointer'; //s
+        };
+    });
+
+    document.querySelectorAll('.settings-image').forEach((element) => {
+        element.addEventListener('click', (event) => {
+            //Trying to download
+            var index = ~~element.parentNode.getAttribute('data-index');
+            var a = document.createElement('a');
+            a.href = element.src;
+            a.download = arr.display[index].content;
+            a.click();
+        });
+    });
+
+    if (document.querySelector('#back-button'))
+        document.querySelector('#back-button').addEventListener('click', () => {
+            renderMenu(arr['pointer-to-parent']);
+        });
+
+    console.log(arr);
+};
+
+module.exports = {
+    renderTitle: function () {
+        //translation ready
+        const title = new Vue({
+            el: '.title',
+            data: {
+                app: {
+                    name: translation.translate('@{app.name}')
+                }
+            }
+        });
+        //render title
+        return title;
+    },
+    renderSwitchButton: function () {
+        //translate switch button alts
+        translation.translateElement('.switch-button');
+        var eles = document.querySelectorAll('.switch-button-icon');
+        var space = (window.innerWidth - (48 + 4) * eles.length) / (eles.length - 1);
+
+        for (var i = 0, len = eles.length; i < len; ++i) {
+            eles[i].style.left = ~~(i * (space + 48)) + 'px';
+            eles[i].style.bottom = '0px';
+        };
+    },
+    renderContent: async function (arr) {
+        this.renderMenu(arr);
+    },
+    renderMenu: renderMenu
+
+};

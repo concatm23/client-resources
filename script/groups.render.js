@@ -1,4 +1,166 @@
-/* Webpack & Concatenate browser pack tool
- * Source Path:resource-app\script\groups.render.js
- * Target: node */
-!function(e,t){if("object"==typeof exports&&"object"==typeof module)module.exports=t();else if("function"==typeof define&&define.amd)define([],t);else{var n=t();for(var r in n)("object"==typeof exports?exports:e)[r]=n[r]}}(global,(function(){return e={717:function(e){e.exports={renderTitle:function(){return requestIdleCallback(translation.translatePage),new Vue({el:".title",data:{app:{name:translation.translate("@{app.name}")}}})},renderSwitchButton:function(){translation.translateElement(".switch-button");for(var e=document.querySelectorAll(".switch-button-icon"),t=(window.innerWidth-52*e.length)/(e.length-1),n=0,r=e.length;n<r;++n)e[n].style.left=~~(n*(t+48))+"px",e[n].style.bottom="0px"},renderList:function(e){var t=new sdk.common.logger("render task"),n=window.innerHeight-38-48-20;t.info("Viewport height",n);var r=1+~~(n/40);t.info("Lists on screen",r);for(var o=0,i=[],s=0;s<r&&e[s];++s)i.push({img_src:"unknown.png",id:e[s][0],name:e[s][0],last_msg:new Date(e[s][1].last_msg||0).toISOString(),new_message_counts:e[s][1].msg_counts||0,list_id:s}),o=s;t.debug("Vue render");var a=new Vue({el:".groups-list",data:{visible_list:i},methods:{enterGroup:function(e){var t=e.target.getAttribute("data-id");t||(t=e.target.parentNode.getAttribute("data-id")),sdk.publish("user-enter-group",t)}}}),u=new IntersectionObserver((function(n){if(t.debug("intersection observer event emit"),++l>10)return u.unobserve(c),u.unobserve(d),t.warn("Too much intersection observer event emit."),void setTimeout((function(){u.observe(c),u.observe(d)}),2e4);n.forEach((function(n){if(n.target==d)for(var r=0;r<5&&e[o+1];r++)t.info("load list",e[o+1],o+1),o++,a.visible_list.push((i={img_src:"unknown.png",id:e[o][0],name:e[o][0],last_msg:new Date(e[o][1].last_msg||0).toISOString(),new_message_counts:e[o][1].msg_counts||0,list_id:o},s="id",u=e[o][0],s in i?Object.defineProperty(i,s,{value:u,enumerable:!0,configurable:!0,writable:!0}):i.id=u,i));var i,s,u})),sdk.publish("user-group-list-update")})),l=0;setInterval((function(){l=0}),5e3);var c=document.querySelector("#top-sentinel"),d=document.querySelector("#bottom-sentinel");return u.observe(c),u.observe(d),a.visible_list},renderButtons:function(){translation.translateElement(".new-group")}}}},t={},function n(r){var o=t[r];if(void 0!==o)return o.exports;var i=t[r]={exports:{}};return e[r](i,i.exports,n),i.exports}(717);var e,t}));
+/**
+ * @Author          : lihugang
+ * @Date            : 2022-07-23 20:15:08
+ * @LastEditTime    : 2022-08-20 10:44:36
+ * @LastEditors     : lihugang
+ * @Description     : 
+ * @FilePath        : c:\Users\heche\AppData\Roaming\concatenate.pz6w7nkeote\resources\script\groups.render.js
+ * @Copyright (c) lihugang
+ * @长风破浪会有时 直挂云帆济沧海
+ * @There will be times when the wind and waves break, and the sails will be hung straight to the sea.
+ * @ * * * 
+ * @是非成败转头空 青山依旧在 几度夕阳红
+ * @Whether it's right or wrong, success or failure, it's all empty now, and it's all gone with the passage of time. The green hills of the year still exist, and the sun still rises and sets.
+ */
+module.exports = {
+    renderTitle: function () {
+        requestIdleCallback(translation.translatePage);
+        //translation ready
+        const title = new Vue({
+            el: '.title',
+            data: {
+                app: {
+                    name: translation.translate('@{app.name}')
+                }
+            }
+        });
+        //render title
+        return title;
+    },
+    renderSwitchButton: function () {
+        //translate switch button alts
+        translation.translateElement('.switch-button');
+        var eles = document.querySelectorAll('.switch-button-icon');
+        var space = (window.innerWidth - (48 + 4) * eles.length) / (eles.length - 1);
+
+        for (var i = 0, len = eles.length; i < len; ++i) {
+            eles[i].style.left = ~~(i * (space + 48)) + 'px';
+            eles[i].style.bottom = '0px';
+        };
+    },
+    renderList: function (lists) {
+        const logger = new sdk.common.logger('render task');
+        //logger.filter(sdk.common.logger.ALL); //for debug
+
+        var list_height = window.innerHeight - 38 - 48 - 20; //38: title height, 48: switch button height, 20: border
+        logger.info('Viewport height',list_height);
+        const one_list_height = 40;
+        const can_render_lists = ~~(list_height / one_list_height) + 1; //+1 for scrollable
+        logger.info('Lists on screen',can_render_lists);
+        //lazy load
+
+        var top_index = 0; // the index of the top element
+        var bottom_index = 0; //the index of the bottom element
+
+        var visible_list = [];
+        for (var i = 0; i < can_render_lists; ++i) {
+            if (!lists[i]) {
+                //not exists, reach limits
+                break;
+            };
+            visible_list.push({
+                img_src: 'unknown.png',
+                id: lists[i][0],
+                name: lists[i][0],
+                last_msg: new Date(lists[i][1].last_msg || 0).toISOString(),
+                new_message_counts: lists[i][1].msg_counts || 0,
+                list_id: i,
+            });
+            bottom_index = i;
+        };
+        //lists -> Array.from 
+        /*
+        [
+            [1, {}],
+            [2, {}],
+            ...
+        ]
+        */
+        logger.debug('Vue render');
+        var vue_render_lists = new Vue({
+            el: '.groups-list',
+            data: {
+                visible_list: visible_list
+            },
+            methods: {
+                enterGroup: function(e) {
+                    var id = e.target.getAttribute('data-id'); //if click the div box
+                    if (!id) {
+                        //click the son element
+                        id = e.target.parentNode.getAttribute('data-id');
+                    };
+                    sdk.publish('user-enter-group', id);
+                },
+            },
+        });
+        
+
+        //watch scroll
+        var watcher = new IntersectionObserver(function (e) {
+            logger.debug('intersection observer event emit');
+            watcher_emit_times++;
+            if (watcher_emit_times > 10) {
+                //over 10 emits in 5s
+                //rate limit
+                watcher.unobserve(top_sentinel);
+                watcher.unobserve(bottom_sentinel);
+                
+                logger.warn('Too much intersection observer event emit.');
+
+                //watch after 20s
+                setTimeout(function() {
+                    watcher.observe(top_sentinel);
+                    watcher.observe(bottom_sentinel);
+                },20000);
+
+                return;
+            };
+            e.forEach(function(e){
+                if (e.target == bottom_sentinel) {
+                    for (var i = 0; i < 5; i++) { //load 5 list one time
+                        if (lists[bottom_index + 1]) {
+                            logger.info('load list',lists[bottom_index + 1],bottom_index + 1);
+                            //not reach limits
+                            bottom_index++;
+                            vue_render_lists.visible_list.push({
+                                img_src: 'unknown.png',
+                                id: lists[bottom_index][0],
+                                name: lists[bottom_index][0],
+                                last_msg: new Date(lists[bottom_index][1].last_msg || 0).toISOString(),
+                                new_message_counts: lists[bottom_index][1].msg_counts || 0,
+                                list_id: bottom_index,
+                                id: lists[bottom_index][0]
+                            });
+                        } else break;
+                    };
+                };
+            });
+
+            sdk.publish('user-group-list-update');//emit event
+        });
+
+        var watcher_emit_times = 0;
+        //record watcher emit times(to prevent too much events)
+        setInterval(function() {
+            watcher_emit_times = 0; //reset every 5s
+        },5000);
+
+        const top_sentinel = document.querySelector('#top-sentinel');
+        const bottom_sentinel = document.querySelector('#bottom-sentinel');
+        watcher.observe(top_sentinel);
+        watcher.observe(bottom_sentinel);
+
+        return vue_render_lists.visible_list;
+    },
+    renderButtons () {
+        // window.buttonsVue = new Vue({
+        //     el: '.new-group',
+        //     methods: {
+        //         new_group: function() {
+        //             sdk.publish('new-group');
+        //         }
+        //     }
+        // });
+        translation.translateElement('.new-group');
+    }
+};

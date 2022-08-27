@@ -1,1 +1,0 @@
-SELECT * FROM group${group_id} WHERE timestamp >= @timestamp ORDER BY timestamp;

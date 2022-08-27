@@ -1,5 +1,89 @@
-/* Webpack & Concatenate browser pack tool
- * Source Path:resource-app\script\settings.operation.js
- * Target: node */
-/*! For license information please see hkskl2by1b.js.LICENSE.txt */
-!function(t,e){if("object"==typeof exports&&"object"==typeof module)module.exports=e();else if("function"==typeof define&&define.amd)define([],e);else{var r=e();for(var n in r)("object"==typeof exports?exports:t)[n]=r[n]}}(global,(function(){return t={942:function(t){function e(t){return e="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(t){return typeof t}:function(t){return t&&"function"==typeof Symbol&&t.constructor===Symbol&&t!==Symbol.prototype?"symbol":typeof t},e(t)}function r(){"use strict";r=function(){return t};var t={},n=Object.prototype,o=n.hasOwnProperty,a="function"==typeof Symbol?Symbol:{},i=a.iterator||"@@iterator",c=a.asyncIterator||"@@asyncIterator",s=a.toStringTag||"@@toStringTag";function u(t,e,r){return Object.defineProperty(t,e,{value:r,enumerable:!0,configurable:!0,writable:!0}),t[e]}try{u({},"")}catch(t){u=function(t,e,r){return t[e]=r}}function f(t,e,r,n){var o=e&&e.prototype instanceof p?e:p,a=Object.create(o.prototype),i=new E(n||[]);return a._invoke=function(t,e,r){var n="suspendedStart";return function(o,a){if("executing"===n)throw new Error("Generator is already running");if("completed"===n){if("throw"===o)throw a;return{value:void 0,done:!0}}for(r.method=o,r.arg=a;;){var i=r.delegate;if(i){var c=_(i,r);if(c){if(c===h)continue;return c}}if("next"===r.method)r.sent=r._sent=r.arg;else if("throw"===r.method){if("suspendedStart"===n)throw n="completed",r.arg;r.dispatchException(r.arg)}else"return"===r.method&&r.abrupt("return",r.arg);n="executing";var s=l(t,e,r);if("normal"===s.type){if(n=r.done?"completed":"suspendedYield",s.arg===h)continue;return{value:s.arg,done:r.done}}"throw"===s.type&&(n="completed",r.method="throw",r.arg=s.arg)}}}(t,r,i),a}function l(t,e,r){try{return{type:"normal",arg:t.call(e,r)}}catch(t){return{type:"throw",arg:t}}}t.wrap=f;var h={};function p(){}function d(){}function v(){}var y={};u(y,i,(function(){return this}));var g=Object.getPrototypeOf,m=g&&g(g(S([])));m&&m!==n&&o.call(m,i)&&(y=m);var w=v.prototype=p.prototype=Object.create(y);function x(t){["next","throw","return"].forEach((function(e){u(t,e,(function(t){return this._invoke(e,t)}))}))}function b(t,r){function n(a,i,c,s){var u=l(t[a],t,i);if("throw"!==u.type){var f=u.arg,h=f.value;return h&&"object"==e(h)&&o.call(h,"__await")?r.resolve(h.__await).then((function(t){n("next",t,c,s)}),(function(t){n("throw",t,c,s)})):r.resolve(h).then((function(t){f.value=t,c(f)}),(function(t){return n("throw",t,c,s)}))}s(u.arg)}var a;this._invoke=function(t,e){function o(){return new r((function(r,o){n(t,e,r,o)}))}return a=a?a.then(o,o):o()}}function _(t,e){var r=t.iterator[e.method];if(void 0===r){if(e.delegate=null,"throw"===e.method){if(t.iterator.return&&(e.method="return",e.arg=void 0,_(t,e),"throw"===e.method))return h;e.method="throw",e.arg=new TypeError("The iterator does not provide a 'throw' method")}return h}var n=l(r,t.iterator,e.arg);if("throw"===n.type)return e.method="throw",e.arg=n.arg,e.delegate=null,h;var o=n.arg;return o?o.done?(e[t.resultName]=o.value,e.next=t.nextLoc,"return"!==e.method&&(e.method="next",e.arg=void 0),e.delegate=null,h):o:(e.method="throw",e.arg=new TypeError("iterator result is not an object"),e.delegate=null,h)}function L(t){var e={tryLoc:t[0]};1 in t&&(e.catchLoc=t[1]),2 in t&&(e.finallyLoc=t[2],e.afterLoc=t[3]),this.tryEntries.push(e)}function k(t){var e=t.completion||{};e.type="normal",delete e.arg,t.completion=e}function E(t){this.tryEntries=[{tryLoc:"root"}],t.forEach(L,this),this.reset(!0)}function S(t){if(t){var e=t[i];if(e)return e.call(t);if("function"==typeof t.next)return t;if(!isNaN(t.length)){var r=-1,n=function e(){for(;++r<t.length;)if(o.call(t,r))return e.value=t[r],e.done=!1,e;return e.value=void 0,e.done=!0,e};return n.next=n}}return{next:j}}function j(){return{value:void 0,done:!0}}return d.prototype=v,u(w,"constructor",v),u(v,"constructor",d),d.displayName=u(v,s,"GeneratorFunction"),t.isGeneratorFunction=function(t){var e="function"==typeof t&&t.constructor;return!!e&&(e===d||"GeneratorFunction"===(e.displayName||e.name))},t.mark=function(t){return Object.setPrototypeOf?Object.setPrototypeOf(t,v):(t.__proto__=v,u(t,s,"GeneratorFunction")),t.prototype=Object.create(w),t},t.awrap=function(t){return{__await:t}},x(b.prototype),u(b.prototype,c,(function(){return this})),t.AsyncIterator=b,t.async=function(e,r,n,o,a){void 0===a&&(a=Promise);var i=new b(f(e,r,n,o),a);return t.isGeneratorFunction(r)?i:i.next().then((function(t){return t.done?t.value:i.next()}))},x(w),u(w,s,"Generator"),u(w,i,(function(){return this})),u(w,"toString",(function(){return"[object Generator]"})),t.keys=function(t){var e=[];for(var r in t)e.push(r);return e.reverse(),function r(){for(;e.length;){var n=e.pop();if(n in t)return r.value=n,r.done=!1,r}return r.done=!0,r}},t.values=S,E.prototype={constructor:E,reset:function(t){if(this.prev=0,this.next=0,this.sent=this._sent=void 0,this.done=!1,this.delegate=null,this.method="next",this.arg=void 0,this.tryEntries.forEach(k),!t)for(var e in this)"t"===e.charAt(0)&&o.call(this,e)&&!isNaN(+e.slice(1))&&(this[e]=void 0)},stop:function(){this.done=!0;var t=this.tryEntries[0].completion;if("throw"===t.type)throw t.arg;return this.rval},dispatchException:function(t){if(this.done)throw t;var e=this;function r(r,n){return i.type="throw",i.arg=t,e.next=r,n&&(e.method="next",e.arg=void 0),!!n}for(var n=this.tryEntries.length-1;n>=0;--n){var a=this.tryEntries[n],i=a.completion;if("root"===a.tryLoc)return r("end");if(a.tryLoc<=this.prev){var c=o.call(a,"catchLoc"),s=o.call(a,"finallyLoc");if(c&&s){if(this.prev<a.catchLoc)return r(a.catchLoc,!0);if(this.prev<a.finallyLoc)return r(a.finallyLoc)}else if(c){if(this.prev<a.catchLoc)return r(a.catchLoc,!0)}else{if(!s)throw new Error("try statement without catch or finally");if(this.prev<a.finallyLoc)return r(a.finallyLoc)}}}},abrupt:function(t,e){for(var r=this.tryEntries.length-1;r>=0;--r){var n=this.tryEntries[r];if(n.tryLoc<=this.prev&&o.call(n,"finallyLoc")&&this.prev<n.finallyLoc){var a=n;break}}a&&("break"===t||"continue"===t)&&a.tryLoc<=e&&e<=a.finallyLoc&&(a=null);var i=a?a.completion:{};return i.type=t,i.arg=e,a?(this.method="next",this.next=a.finallyLoc,h):this.complete(i)},complete:function(t,e){if("throw"===t.type)throw t.arg;return"break"===t.type||"continue"===t.type?this.next=t.arg:"return"===t.type?(this.rval=this.arg=t.arg,this.method="return",this.next="end"):"normal"===t.type&&e&&(this.next=e),h},finish:function(t){for(var e=this.tryEntries.length-1;e>=0;--e){var r=this.tryEntries[e];if(r.finallyLoc===t)return this.complete(r.completion,r.afterLoc),k(r),h}},catch:function(t){for(var e=this.tryEntries.length-1;e>=0;--e){var r=this.tryEntries[e];if(r.tryLoc===t){var n=r.completion;if("throw"===n.type){var o=n.arg;k(r)}return o}}throw new Error("illegal catch attempt")},delegateYield:function(t,e,r){return this.delegate={iterator:S(t),resultName:e,nextLoc:r},"next"===this.method&&(this.arg=void 0),h}},t}function n(t,e,r,n,o,a,i){try{var c=t[a](i),s=c.value}catch(t){return void r(t)}c.done?e(s):Promise.resolve(s).then(n,o)}function o(t){return function(){var e=this,r=arguments;return new Promise((function(o,a){var i=t.apply(e,r);function c(t){n(i,o,a,c,s,"next",t)}function s(t){n(i,o,a,c,s,"throw",t)}c(void 0)}))}}var a,i,c,s,u;t.exports={logout:(u=o(r().mark((function t(){var e;return r().wrap((function(t){for(;;)switch(t.prev=t.next){case 0:return t.t0=JSON,t.next=3,sdk.fs.read("usr");case 3:return t.t1=t.sent,(e=t.t0.parse.call(t.t0,t.t1)).login_time=0,t.next=8,sdk.fs.write("usr","binary",JSON.stringify(e));case 8:parent.location.reload();case 9:case"end":return t.stop()}}),t)}))),function(){return u.apply(this,arguments)}),quitAPP:(s=o(r().mark((function t(){return r().wrap((function(t){for(;;)switch(t.prev=t.next){case 0:sdk.quit_app();case 1:case"end":return t.stop()}}),t)}))),function(){return s.apply(this,arguments)}),changeLanguage:(c=o(r().mark((function t(e){var n;return r().wrap((function(t){for(;;)switch(t.prev=t.next){case 0:if(e){t.next=2;break}return t.abrupt("return");case 2:return t.next=4,sdk.getConfig("");case 4:(n=t.sent).user_config.lang=e,sdk.setConfig(n),location.reload();case 8:case"end":return t.stop()}}),t)}))),function(t){return c.apply(this,arguments)}),clearCache:(i=o(r().mark((function t(){return r().wrap((function(t){for(;;)switch(t.prev=t.next){case 0:return t.next=2,sdk.clear_web_cache();case 2:t.sent?alert(translation.translate("@{settings.clear_cache_success}")):alert(translation.translate("@{settings.fail_to_clear_cache}"));case 4:case"end":return t.stop()}}),t)}))),function(){return i.apply(this,arguments)}),uploadUserAvatar:(a=o(r().mark((function t(e,n,a,i){var c,s,u;return r().wrap((function(t){for(;;)switch(t.prev=t.next){case 0:if(i.style.display="none",c=fRequire("../lib/image-conversion.js"),!(e[0].size>327680)){t.next=9;break}return t.next=6,c.compressAccurately(e[0],{height:500,width:500,size:320,type:"image/png",accuracy:.98});case 6:s=t.sent,t.next=10;break;case 9:s=e[0];case 10:(u=new FileReader).readAsDataURL(s),u.onload=o(r().mark((function t(){var e;return r().wrap((function(t){for(;;)switch(t.prev=t.next){case 0:return e=u.result.substring(u.result.indexOf("base64,")+7),t.next=3,sdk.remote.do("fs.uploadAvatar",{token:sessionStorage.user_token,user_uid:sessionStorage.uid,content:e});case 3:return t.next=5,t.sent.json();case 5:"success"===t.sent.status?(setTimeout((function(){sdk.local.do("webcache.delete",{key:"avatar-cache-user-"+sessionStorage.uid})}),3e5),alert(translation.translate("@{settings.upload_avatar_success}")),location.reload()):alert(translation.translate("@{settings.failed_to_update_avatar}"));case 7:case"end":return t.stop()}}),t)})));case 13:case"end":return t.stop()}}),t)}))),function(t,e,r,n){return a.apply(this,arguments)})}}},e={},function r(n){var o=e[n];if(void 0!==o)return o.exports;var a=e[n]={exports:{}};return t[n](a,a.exports,r),a.exports}(942);var t,e}));
+/**
+ * @Author          : lihugang
+ * @Date            : 2022-07-31 13:24:37
+ * @LastEditTime    : 2022-08-27 12:58:12
+ * @LastEditors     : lihugang
+ * @Description     : 
+ * @FilePath        : c:\Users\heche\AppData\Roaming\concatenate.pz6w7nkeote\resources\script\settings.operation.js
+ * @Copyright (c) lihugang
+ * @长风破浪会有时 直挂云帆济沧海
+ * @There will be times when the wind and waves break, and the sails will be hung straight to the sea.
+ * @ * * * 
+ * @是非成败转头空 青山依旧在 几度夕阳红
+ * @Whether it's right or wrong, success or failure, it's all empty now, and it's all gone with the passage of time. The green hills of the year still exist, and the sun still rises and sets.
+ */
+module.exports = {
+    logout: async function () {
+        const login_content = JSON.parse(await sdk.fs.read('usr')); //read user data
+        login_content.login_time = 0; //set login time = 0, so that the software will recognize user login expires  
+        await sdk.fs.write('usr', 'binary', JSON.stringify(login_content));
+        //refresh the page
+        parent.location.reload();
+    },
+    quitAPP: async function () {
+        sdk.quit_app();
+    },
+    changeLanguage: async function (val) {
+        if (!val) return;
+        var config = await sdk.getConfig('');
+        config.user_config.lang = val;
+        sdk.setConfig(config);
+        location.reload();
+    },
+    clearCache: async function () {
+        const clearState = await sdk.clear_web_cache();
+        if (!clearState) alert(translation.translate('@{settings.fail_to_clear_cache}'));
+        else alert(translation.translate('@{settings.clear_cache_success}'));
+    },
+    uploadUserAvatar: async function (files, display, index, element) {
+        //display.edit = false;
+        //why vue does not work?
+        element.style.display = 'none';
+
+
+        const imageConversion = fRequire('../lib/image-conversion.js');
+        const AVATAR_MIN_LIMIT = 320; //320k
+
+        if (files[0].size > AVATAR_MIN_LIMIT * 1024) {
+            //compress file
+            var zippedFile = await imageConversion.compressAccurately(files[0], {
+                height: 500,
+                width: 500,
+                size: AVATAR_MIN_LIMIT,
+                type: 'image/png',
+                accuracy: 0.98
+            });
+        } else var zippedFile = files[0];
+
+
+        const fileReader = new FileReader();
+        fileReader.readAsDataURL(zippedFile);
+        fileReader.onload = async () => {
+            //convert blob to base64
+            const fileBase64 = fileReader.result.substring(fileReader.result.indexOf('base64,') + 7 /* the length of 'base64,' */);
+
+            const response = await (await sdk.remote.do('fs.uploadAvatar', {
+                token: sessionStorage.user_token,
+                user_uid: sessionStorage.uid,
+                content: fileBase64
+            })).json();
+
+            if (response.status === 'success') {
+                setTimeout(() => {
+                    sdk.local.do('webcache.delete', {
+                        key: 'avatar-cache-user-' + sessionStorage.uid
+                    });
+                    //remove cache in 5min
+                }, 5 * 60 * 1000);
+                alert(translation.translate('@{settings.upload_avatar_success}'))
+
+                location.reload();
+                //reload the page
+            } else alert(translation.translate('@{settings.failed_to_update_avatar}'))
+        };
+    },
+    about: () => {
+        window.open('https://concatenate.deta.dev/about/1.0.0');
+    }
+};
+

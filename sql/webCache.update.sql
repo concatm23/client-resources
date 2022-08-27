@@ -1,1 +1,0 @@
-UPDATE cache SET cache_value=@value WHERE cache_key=@key

@@ -1,4 +1,157 @@
-/* Webpack & Concatenate browser pack tool
- * Source Path:resource-app\script\chat.render.js
- * Target: node */
-!function(e,t){if("object"==typeof exports&&"object"==typeof module)module.exports=t();else if("function"==typeof define&&define.amd)define([],t);else{var n=t();for(var s in n)("object"==typeof exports?exports:e)[s]=n[s]}}(global,(function(){return e={612:function(e){var t=location.search.substring(1),n=new sdk.common.logger("Chat/Render Thread"),s=sessionStorage.getItem("sync-msg-"+t)||"null";e.exports={renderTitle:function(){var e=new Vue({el:".title",data:{data:{title:sessionStorage.getItem("group-alias-"+t),status:""}},methods:{back_page:function(){sdk.publish("ui-back-page")},refresh:function(){var e=this;this.refresh=!1,this.$nextTick((function(){e.refresh=!0}))},updateStatus:function(){var e,i=sessionStorage.getItem("sync-msg-"+t)||"null",o=null!==(e={null:"@{chat.syncing_chat_history_waiting_queue}",pending:"@{chat.syncing_chat_history}",sending:"@{chat.sending_message}",finished:""}[i])&&void 0!==e?e:"Unknown Status";this.data.status=o,"pending"!==s&&"null"!==s||"finished"!==i||(n.info(s,i,"reload the page"),location.reload()),document.querySelector(".group-status").innerText=translation.translate(o)}},mounted:function(){var e=this;window.refreshTitle=this.refresh,requestAnimationFrame((function t(){setTimeout(e.updateStatus,0),requestAnimationFrame(t)}))}});window.titleVue=e,translation.translateElement(".title"),document.querySelector(".back-icon").addEventListener("click",(function(){sdk.publish("ui-back-page")}))},renderInputArea:function(){window.inputAreaVue=new Vue({el:".operations",data:{content:"",state:{isSyncingMessage:"finished"!==sessionStorage["sync-msg-"+t],isBannedAnonymous:!0,isChattingAnonymous:!1,isCouldInviteMember:!1,isCouldKickMember:!1,isCouldEditAlias:!1}},methods:{clear_content:function(){this.content=""},send_msg:function(){sessionStorage["sync-msg-"+t]="sending",sdk.publish("send-msg",this.content,this.state.isChattingAnonymous),this.clear_content()},delete_msg:function(){console.log("Delete message")},refreshSyncingState:function(){this.state.isSyncingMessage="finished"!==sessionStorage["sync-msg-"+t]},invite_member:function(){sdk.publish("invite-member")},kick_member:function(){sdk.publish("kick-member")},edit_alias:function(){sdk.publish("edit-alias")}},mounted:function(){var e=this;setInterval((function(){e.refreshSyncingState()}),50)}})},renderMessage:function(e){window.messageAreaVue=new Vue({el:".messages",data:{show_msgs:e},methods:{download_avatar:function(e){var t=document.createElement("a");t.href=e.target.src,t.download=translation.translate("@{dict.avatar}"),t.click()}}}),sdk.publish("chat-page-loaded")}}}},t={},function n(s){var i=t[s];if(void 0!==i)return i.exports;var o=t[s]={exports:{}};return e[s](o,o.exports,n),o.exports}(612);var e,t}));
+/**
+ * @Author          : lihugang
+ * @Date            : 2022-07-31 22:06:36
+ * @LastEditTime    : 2022-08-19 15:56:35
+ * @LastEditors     : lihugang
+ * @Description     : 
+ * @FilePath        : c:\Users\heche\AppData\Roaming\concatenate.pz6w7nkeote\resources\script\chat.render.js
+ * @Copyright (c) lihugang
+ * @长风破浪会有时 直挂云帆济沧海
+ * @There will be times when the wind and waves break, and the sails will be hung straight to the sea.
+ * @ * * * 
+ * @是非成败转头空 青山依旧在 几度夕阳红
+ * @Whether it's right or wrong, success or failure, it's all empty now, and it's all gone with the passage of time. The green hills of the year still exist, and the sun still rises and sets.
+ */
+
+const group_id = location.search.substring(1);
+const logger = new sdk.common.logger('Chat/Render Thread');
+let openSyncStatus = sessionStorage.getItem('sync-msg-' + group_id) || 'null';
+module.exports = {
+    renderTitle: function () {
+        const title = new Vue({
+            el: '.title',
+            data: {
+                data: {
+                    title: sessionStorage.getItem('group-alias-' + group_id), //read from the cache,
+                    status: '',
+                },
+                //vue not support edit the elements in the root, (may be due to transfering value of number,string and transfering pointer of array,object in JavaScript)
+            },
+            methods: {
+                back_page: function () {
+                    //return to the list
+                    sdk.publish('ui-back-page');
+                },
+                refresh: function () {
+                    this.refresh = false;
+                    this.$nextTick(() => {
+                        //when the dom element rendered
+                        this.refresh = true;
+                    });
+                },
+                updateStatus() {
+                    const currentStatus = sessionStorage.getItem('sync-msg-' + group_id) || 'null';
+                    //using map instead of if to improve read performance and efficiency
+                    const statusText = ({
+                        'null': '@{chat.syncing_chat_history_waiting_queue}',
+                        'pending': '@{chat.syncing_chat_history}',
+                        'sending': '@{chat.sending_message}',
+                        'finished': ''
+                    })[currentStatus] ?? 'Unknown Status';
+                    //logger.info('Setting title status  ', currentStatus, statusText);
+                    this.data.status = statusText;
+                    //vue does not render
+                    //native api calls
+
+                    if ((openSyncStatus === 'pending' || openSyncStatus === 'null') && currentStatus === 'finished') {
+                        //pending/waiting -> sending
+                        //refresh the page to load contents
+                        logger.info(openSyncStatus,currentStatus, 'reload the page');
+                        location.reload();
+                    };
+
+                    document.querySelector('.group-status').innerText = translation.translate(statusText);
+                },
+            },
+            mounted: function () {
+                window.refreshTitle = this.refresh;
+                //expose refresh method to the window/global
+
+                const updateTitleStatusAsync = () => {
+                    setTimeout(this.updateStatus, 0);
+                    requestAnimationFrame(updateTitleStatusAsync);
+                };
+                requestAnimationFrame(updateTitleStatusAsync);
+
+
+            },
+        });
+
+
+        //render title
+        window.titleVue = title;
+
+        //translate the element
+        translation.translateElement('.title');
+
+        document.querySelector('.back-icon').addEventListener('click', () => {
+            //i don't know why Vue does not listen to click events
+            //using native
+            sdk.publish('ui-back-page');
+        });
+    },
+
+    renderInputArea: () => {
+        window.inputAreaVue = new Vue({
+            el: '.operations',
+            data: {
+                content: '',
+                state: {
+                    isSyncingMessage: sessionStorage['sync-msg-' + group_id] !== 'finished',
+                    isBannedAnonymous: true,
+                    isChattingAnonymous: false,
+                    isCouldInviteMember: false,
+                    isCouldKickMember: false,
+                    isCouldEditAlias: false,
+                }
+            },
+            methods: {
+                clear_content() {
+                    this.content = '';
+                },
+                send_msg() {
+                    sessionStorage['sync-msg-' + group_id] = 'sending';
+                    sdk.publish('send-msg', this.content, this.state.isChattingAnonymous);
+                    this.clear_content();
+                },
+                delete_msg() {
+                    console.log('Delete message');
+                },
+                refreshSyncingState() {
+                    this.state.isSyncingMessage = sessionStorage['sync-msg-' + group_id] !== 'finished';
+                },
+                invite_member () {
+                    sdk.publish('invite-member');
+                },
+                kick_member () {
+                    sdk.publish('kick-member');
+                },
+                edit_alias () {
+                    sdk.publish('edit-alias');
+                },
+            },
+            mounted() {
+                setInterval(() => {
+                    this.refreshSyncingState();
+                }, 50);
+            }
+        })
+    },
+    renderMessage (messages) {
+        window.messageAreaVue = new Vue({
+            el: '.messages',
+            data: {
+                show_msgs: messages
+            },
+            methods: {
+                download_avatar(e) {
+                    const a = document.createElement('a');
+                    a.href = e.target.src;
+                    a.download = translation.translate('@{dict.avatar}');
+                    a.click();
+                },
+            }
+        });
+        sdk.publish('chat-page-loaded');
+    },
+};
